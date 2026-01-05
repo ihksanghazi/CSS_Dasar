@@ -1,140 +1,163 @@
-# Modul 5: Background & Border CSS
+# 📘 Modul 6: Layout dengan Flexbox
 
 **🎯 Tujuan Pembelajaran**
 Setelah pertemuan ini, peserta mampu:
 
-- Mengatur warna dan gambar latar belakang
-- Mengontrol ukuran dan posisi background image
-- Membuat sudut elemen membulat dengan border-radius
-- Menerapkan background & border pada **banner website**
+- Memahami konsep dasar Flexbox
+- Menggunakan Flexbox untuk mengatur layout
+- Mengatur perataan dan arah elemen
+- Membangun **navbar** dan **layout 2 kolom**
 
-## 1️⃣ Background Color (`background-color`)
+## 1️⃣ Apa Itu Flexbox?
 
-Digunakan untuk memberi warna latar belakang elemen.
+**Flexbox (Flexible Box Layout)** adalah sistem layout CSS untuk:
+
+- Menyusun elemen secara fleksibel
+- Membuat layout responsif
+- Mengatur posisi elemen secara horizontal & vertikal
+
+📌 Cocok untuk **navbar**, **card**, dan **layout kolom**.
+
+## 2️⃣ Mengaktifkan Flexbox (`display: flex`)
+
+Untuk menggunakan Flexbox, container harus di-set:
 
 ```css
-body {
-  background-color: #f4f6f8;
+.container {
+  display: flex;
 }
 ```
 
-📌 Gunakan warna dengan kontras yang nyaman.
+📌 Semua child element menjadi **flex items**.
 
-## 2️⃣ Background Image (`background-image`)
+## 3️⃣ Arah Elemen (`flex-direction`)
 
-Digunakan untuk menampilkan gambar sebagai latar.
-
-```css
-.banner {
-  background-image: url("banner.jpg");
-}
-```
-
-📌 Pastikan path gambar benar.
-
-## 3️⃣ Background Size (`background-size`)
-
-Mengatur ukuran background image.
+Menentukan arah susunan elemen.
 
 ```css
-background-size: cover;
+flex-direction: row;
 ```
 
 Nilai umum:
 
-- `cover` → menutupi area
-- `contain` → seluruh gambar terlihat
-- ukuran manual: `100% 100%`
-- 📌 `cover` paling sering digunakan untuk banner.
+- `row` (default) → horizontal
+- `column` → vertikal
+- `row-reverse`
+- `column-reverse`
 
-## 4️⃣ Background Position (`background-position`)
+## 4️⃣ Perataan Horizontal (`justify-content`)
 
-Mengatur posisi gambar latar.
+Mengatur posisi elemen di `arah utama`.
 
 ```css
-background-position: center;
+justify-content: space-between;
 ```
 
 Nilai umum:
 
+- `flex-start`
 - `center`
-- `top`
-- `bottom`
-- `left`
-- `right`
+- `flex-end`
+- `space-between`
+- `space-around`
+- `space-evenly`
 
-## 5️⃣ Border Radius (`border-radius`)
+## 5️⃣ Perataan Vertikal (`align-items`)
 
-Digunakan untuk membuat sudut elemen menjadi membulat.
+Mengatur posisi elemen di **arah silang (cross-axis)**.
 
 ```css
-.card {
-  border-radius: 12px;
-}
+align-items: center;
 ```
 
-📌 Semakin besar nilai, semakin bulat sudutnya.
+Nilai umum:
 
-## 🧪 Praktik: Banner Website Sederhana
+- `flex-start`
+- `center`
+- `flex-end`
+- `stretch`
 
-**🎯 Tujuan Praktik**
-Membuat banner website dengan background image dan teks di atasnya.
+## 6️⃣ Jarak Antar Elemen (`gap`)
 
-### 1️⃣ Struktur File
+Digunakan untuk memberi jarak antar flex item.
 
-- banner
-  - index.html
-  - style.css
-  - banner.jpg
+```css
+gap: 20px;
+```
 
-### 2️⃣ Kode HTML (`index.html`)
+📌 Lebih rapi daripada `margin`.
+
+## 🧪 Praktik 1: Navbar dengan Flexbox
+
+**🎯 Tujuan**
+Membuat navbar horizontal modern.
+
+### HTML
 
 ```html
-<!DOCTYPE html>
-<html lang="id">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Banner Website</title>
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <body>
-    <div class="banner">
-      <h1>Belajar CSS</h1>
-      <p>Membuat tampilan website lebih menarik</p>
-    </div>
-  </body>
-</html>
+<nav class="navbar">
+  <h2 class="logo">MyWebsite</h2>
+  <ul class="menu">
+    <li>Home</li>
+    <li>About</li>
+    <li>Contact</li>
+  </ul>
+</nav>
 ```
 
-### 3️⃣ Kode CSS (`style.css`)
+### CSS
 
 ```css
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-body {
-  font-family: Arial, Helvetica, sans-serif;
-}
-
-.banner {
-  height: 300px;
-  background-image: url("banner.jpg");
-  background-size: cover;
-  background-position: center;
-  border-radius: 16px;
-  margin: 40px;
-  padding: 40px;
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #222;
+  padding: 15px 30px;
   color: white;
 }
 
-.banner h1 {
-  font-size: 36px;
-}
-
-.banner p {
-  font-size: 18px;
+.menu {
+  display: flex;
+  list-style: none;
+  gap: 20px;
 }
 ```
+
+## 🧪 Praktik 2: Layout 2 Kolom
+
+**🎯 Tujuan**
+Membuat layout konten dan sidebar.
+
+### HTML
+
+```html
+<div class="container">
+  <div class="content">Konten Utama</div>
+  <div class="sidebar">Sidebar</div>
+</div>
+```
+
+### CSS
+
+```css
+.container {
+  display: flex;
+  gap: 20px;
+  padding: 20px;
+}
+
+.content {
+  flex: 3;
+  background-color: #f4f4f4;
+  padding: 20px;
+}
+
+.sidebar {
+  flex: 1;
+  background-color: #ddd;
+  padding: 20px;
+}
+```
+
+📌 Properti `flex` mengatur proporsi kolom.
