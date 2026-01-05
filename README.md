@@ -1,118 +1,91 @@
-# 📘 Modul 4: Box Model CSS
+# Modul 5: Background & Border CSS
 
 **🎯 Tujuan Pembelajaran**
 Setelah pertemuan ini, peserta mampu:
 
-- Memahami konsep **CSS Box Model**
-- Mengatur ukuran dan ruang elemen
-- Menggunakan margin, padding, dan border dengan tepat
-- Menerapkan `box-sizing: border-box`
-- Membuat layout **card sederhana**
+- Mengatur warna dan gambar latar belakang
+- Mengontrol ukuran dan posisi background image
+- Membuat sudut elemen membulat dengan border-radius
+- Menerapkan background & border pada **banner website**
 
-## 1️⃣ Apa Itu Box Model?
+## 1️⃣ Background Color (`background-color`)
 
-Setiap elemen HTML dianggap sebagai **kotak (box)** yang terdiri dari:
+Digunakan untuk memberi warna latar belakang elemen.
 
-```bash
-+----------------------+
-|      margin          |
-|  +---------------+  |
-|  |   border      |  |
-|  | +-----------+ |  |
-|  | | padding   | |  |
-|  | | content   | |  |
-|  | +-----------+ |  |
-|  +---------------+  |
-+----------------------+
-
+```css
+body {
+  background-color: #f4f6f8;
+}
 ```
 
-📌 Urutan: **Content → Padding → Border → Margin**
+📌 Gunakan warna dengan kontras yang nyaman.
 
-## 2️⃣ Width & Height
+## 2️⃣ Background Image (`background-image`)
 
-Digunakan untuk mengatur **ukuran konten** elemen.
+Digunakan untuk menampilkan gambar sebagai latar.
+
+```css
+.banner {
+  background-image: url("banner.jpg");
+}
+```
+
+📌 Pastikan path gambar benar.
+
+## 3️⃣ Background Size (`background-size`)
+
+Mengatur ukuran background image.
+
+```css
+background-size: cover;
+```
+
+Nilai umum:
+
+- `cover` → menutupi area
+- `contain` → seluruh gambar terlihat
+- ukuran manual: `100% 100%`
+- 📌 `cover` paling sering digunakan untuk banner.
+
+## 4️⃣ Background Position (`background-position`)
+
+Mengatur posisi gambar latar.
+
+```css
+background-position: center;
+```
+
+Nilai umum:
+
+- `center`
+- `top`
+- `bottom`
+- `left`
+- `right`
+
+## 5️⃣ Border Radius (`border-radius`)
+
+Digunakan untuk membuat sudut elemen menjadi membulat.
 
 ```css
 .card {
-  width: 300px;
-  height: auto;
+  border-radius: 12px;
 }
 ```
 
-📌 `height: auto` menyesuaikan isi.
+📌 Semakin besar nilai, semakin bulat sudutnya.
 
-## 3️⃣ Padding
-
-Ruang **di dalam elemen**, antara konten dan border.
-
-```css
-.card {
-  padding: 20px;
-}
-```
-
-📌 Bisa spesifik:
-
-```css
-.card {
-  padding: 10px 20px;
-}
-```
-
-## 4️⃣ Border
-
-Garis pembatas elemen.
-
-```css
-.card {
-  border: 1px solid #ccc;
-}
-```
-
-📌 Format: `border: width style color`
-
-## 5️⃣ Margin
-
-Ruang **di luar elemen**, untuk jarak antar elemen.
-
-```css
-.card {
-  margin: 20px auto;
-}
-```
-
-📌 `auto` membuat elemen berada di tengah (horizontal).
-
-## 6️⃣ Box-Sizing
-
-Mengatur cara browser menghitung ukuran elemen.
-**Default:**
-
-```css
-box-sizing: content-box;
-```
-
-**Best Practice:**
-
-```css
-* {
-  box-sizing: border-box;
-}
-```
-
-📌 Dengan `border-box`, **padding dan border tidak menambah ukuran elemen**.
-
-## 🧪 Praktik: Layout Kartu (Card) Sederhana
+## 🧪 Praktik: Banner Website Sederhana
 
 **🎯 Tujuan Praktik**
-Membuat komponen **card** seperti pada website modern.
+Membuat banner website dengan background image dan teks di atasnya.
 
 ### 1️⃣ Struktur File
 
-- card-layout
+- banner
   - index.html
   - style.css
+  - banner.jpg
 
 ### 2️⃣ Kode HTML (`index.html`)
 
@@ -121,14 +94,13 @@ Membuat komponen **card** seperti pada website modern.
 <html lang="id">
   <head>
     <meta charset="UTF-8" />
-    <title>Card Layout</title>
+    <title>Banner Website</title>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <div class="card">
-      <h2>Judul Card</h2>
-      <p>Ini adalah contoh card sederhana menggunakan konsep box model CSS.</p>
-      <a href="#">Baca Selengkapnya</a>
+    <div class="banner">
+      <h1>Belajar CSS</h1>
+      <p>Membuat tampilan website lebih menarik</p>
     </div>
   </body>
 </html>
@@ -139,28 +111,30 @@ Membuat komponen **card** seperti pada website modern.
 ```css
 * {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 body {
   font-family: Arial, Helvetica, sans-serif;
-  background-color: #f5f5f5;
 }
 
-.card {
-  width: 300px;
-  background-color: #ffffff;
-  border: 1px solid #ddd;
-  padding: 20px;
-  margin: 40px auto;
-  border-radius: 8px;
+.banner {
+  height: 300px;
+  background-image: url("banner.jpg");
+  background-size: cover;
+  background-position: center;
+  border-radius: 16px;
+  margin: 40px;
+  padding: 40px;
+  color: white;
 }
 
-.card h2 {
-  margin-top: 0;
+.banner h1 {
+  font-size: 36px;
 }
 
-.card a {
-  text-decoration: none;
-  color: #007bff;
+.banner p {
+  font-size: 18px;
 }
 ```
