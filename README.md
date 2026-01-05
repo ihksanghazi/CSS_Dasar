@@ -1,147 +1,167 @@
-# 📘 Modul 1: Pengenalan CSS
+# 📘 Modul 2: Selector CSS
 
 **🎯 Tujuan Pembelajaran**
 Setelah pertemuan ini, peserta mampu:
 
-- Menjelaskan peran CSS dalam pengembangan web
-- Memahami cara kerja CSS bersama HTML
-- Menjelaskan perbedaan Inline, Internal, dan External CSS
-- Menulis struktur dasar CSS
-- Mengubah tampilan teks HTML menggunakan CSS
+- Memahami fungsi selector dalam CSS
+- Menggunakan berbagai jenis selector dengan tepat
+- Menerapkan selector CSS untuk styling halaman biodata
 
-## 1️⃣ Apa Itu CSS?
+## 1️⃣ Apa Itu Selector CSS?
 
-**CSS (Cascading Style Sheets)** adalah bahasa yang digunakan untuk:
+**Selector CSS** adalah cara untuk **memilih elemen HTML** yang ingin diberi gaya (style).
 
-- Mengatur **tampilan visual** halaman web
-- Mengontrol warna, font, ukuran, dan layout
-- Memisahkan **struktur (HTML)** dan **desain (CSS)**
+📌 Selector menentukan **elemen mana** yang akan dipengaruhi oleh aturan CSS.
 
-📌 Tanpa CSS, website hanya berisi teks polos.
+## 2️⃣ Element Selector
 
-## 2️⃣ Fungsi CSS dalam Web
-
-CSS berfungsi untuk:
-
-- Membuat tampilan website lebih menarik
-- Menjaga konsistensi desain
-- Memudahkan maintenance kode
-- Membuat website responsif
-
-📌 CSS bekerja di sisi client (browser).
-
-## 3️⃣ Cara Kerja CSS (HTML + CSS)
-
-Browser membaca:
-
-1. Struktur HTML
-2. Aturan CSS
-3. Menggabungkan keduanya menjadi tampilan visual
-
-📌 CSS menargetkan elemen HTML menggunakan selector.
-
-## 4️⃣ Cara Menggunakan CSS
-
-### 🔹 1. Inline CSS
-
-Ditulis langsung pada tag HTML.
-
-```html
-<p style="color: red;">Teks Merah</p>
-```
-
-✅ Cepat & mudah
-❌ Tidak efisien untuk proyek besar
-
-### 🔹 2. Internal CSS
-
-Ditulis di dalam tag `<style>` pada `<head>`.
-
-```html
-<style>
-  p {
-    color: blue;
-  }
-</style>
-```
-
-📌 Cocok untuk satu halaman.
-
-### 🔹 3. External CSS (Best Practice)
-
-CSS ditulis di file terpisah `.css`.
-
-```html
-<link rel="stylesheet" href="style.css" />
-```
+Digunakan untuk memilih **elemen HTML berdasarkan nama tag**.
 
 ```css
 p {
-  color: green;
-}
-```
-
-📌 Digunakan di proyek profesional.
-
-## 5️⃣ Struktur Dasar CSS
-
-Struktur umum CSS:
-
-```css
-selector {
-  property: value;
-}
-```
-
-**Contoh:**
-
-```css
-p {
-  color: red;
+  color: black;
   font-size: 16px;
 }
 ```
 
-📌 Penjelasan:
+📌 Selector ini akan mempengaruhi **semua** `<p>` di halaman.
 
-- **Selector** → elemen HTML yang dipilih
-- **Property** → jenis styling
-- **Value** → nilai styling
+## 3️⃣ Class Selector
 
-## 🧪 Praktik: Mengubah Warna & Font Teks HTML
+Digunakan untuk memilih elemen berdasarkan **atribut class**.
+**HTML:**
+
+```html
+<p class="title">Biodata Saya</p>
+```
+
+**CSS**
+
+```css
+.title {
+  color: blue;
+  font-weight: bold;
+}
+```
+
+📌 Class bisa digunakan **lebih dari satu kali**.
+
+## 4️⃣ ID Selector
+
+Digunakan untuk memilih elemen dengan **id unik**.
+**HTML:**
+
+```html
+<h1 id="header">Profil</h1>
+```
+
+**CSS:**
+
+```css
+#header {
+  background-color: lightgray;
+  padding: 10px;
+}
+```
+
+📌 ID hanya boleh digunakan **satu kali dalam satu halaman**.
+
+## 5️⃣ Group Selector
+
+Digunakan untuk memberi style yang sama ke **beberapa selector sekaligus**.
+
+**Contoh:**
+
+```css
+h1,
+h2,
+p {
+  font-family: Arial;
+}
+```
+
+📌 Menghemat kode dan meningkatkan konsistensi desain.
+
+## 6️⃣ Universal Selector
+
+Digunakan untuk memilih **semua elemen HTML**.
+**Contoh:**
+
+```css
+* {
+  margin: 0;
+  padding: 0;
+}
+```
+
+📌 Umumnya digunakan untuk **reset CSS**.
+
+## 🧪 Praktik: Styling Halaman Biodata
 
 **🎯 Tujuan Praktik**
-Menerapkan CSS dasar untuk mengubah tampilan teks.
-**Instruksi:**
+Menggunakan berbagai selector CSS untuk mempercantik halaman biodata.
 
-1. Buat file `index.html`
-2. Tambahkan Internal CSS
-3. Ubah warna dan font teks
+### 1️⃣ Struktur File
 
-**Contoh Hasil Praktik:**
+- biodata
+  - index.html
+  - style.css
+
+### 2️⃣ Kode HTML (`index.html`)
 
 ```html
 <!DOCTYPE html>
 <html lang="id">
   <head>
     <meta charset="UTF-8" />
-    <title>Pengenalan CSS</title>
-
-    <style>
-      h1 {
-        color: darkblue;
-        font-family: Arial;
-      }
-
-      p {
-        color: gray;
-        font-size: 18px;
-      }
-    </style>
+    <title>Biodata</title>
+    <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <h1>Belajar CSS</h1>
-    <p>CSS membuat tampilan website lebih menarik.</p>
+    <h1 id="header">Biodata Mahasiswa</h1>
+
+    <p class="title">Informasi Pribadi</p>
+
+    <ul>
+      <li>Nama: Andi</li>
+      <li>Umur: 22 Tahun</li>
+      <li>Hobi: Coding</li>
+    </ul>
+
+    <p>Terima kasih telah mengunjungi halaman biodata.</p>
   </body>
 </html>
+```
+
+### 3️⃣ Kode CSS (`style.css`)
+
+```css
+/* Universal Selector */
+* {
+  font-family: Arial, sans-serif;
+}
+
+/* ID Selector */
+#header {
+  background-color: #f2f2f2;
+  padding: 15px;
+  text-align: center;
+}
+
+/* Class Selector */
+.title {
+  color: darkblue;
+  font-size: 18px;
+}
+
+/* Element Selector */
+p {
+  color: #333;
+}
+
+/* Group Selector */
+li,
+p {
+  line-height: 1.6;
+}
 ```
