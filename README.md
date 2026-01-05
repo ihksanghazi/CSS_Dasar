@@ -1,109 +1,125 @@
-# 📘 Modul 2: Selector CSS
+# 📘 Modul 3: Warna, Font, dan Text Styling
 
 **🎯 Tujuan Pembelajaran**
 Setelah pertemuan ini, peserta mampu:
 
-- Memahami fungsi selector dalam CSS
-- Menggunakan berbagai jenis selector dengan tepat
-- Menerapkan selector CSS untuk styling halaman biodata
+- Mengatur warna teks menggunakan CSS
+- Mengubah jenis, ukuran, dan ketebalan font
+- Mengatur perataan dan dekorasi teks
+- Menerapkan text styling untuk halaman artikel
 
-## 1️⃣ Apa Itu Selector CSS?
+## 1️⃣ Mengatur Warna Teks (`color`)
 
-**Selector CSS** adalah cara untuk **memilih elemen HTML** yang ingin diberi gaya (style).
-
-📌 Selector menentukan **elemen mana** yang akan dipengaruhi oleh aturan CSS.
-
-## 2️⃣ Element Selector
-
-Digunakan untuk memilih **elemen HTML berdasarkan nama tag**.
+Properti `color` digunakan untuk mengatur warna teks.
+**Contoh:**
 
 ```css
 p {
-  color: black;
+  color: darkslategray;
+}
+```
+
+**Jenis Penulisan Warna:**
+
+- Nama warna: `red`, `blue`
+- Hex: `#333333`
+- RGB: `rgb(0, 0, 0)`
+
+📌 **Best practice**: Gunakan kode **hex** agar konsisten.
+
+## 2️⃣ Mengatur Jenis Font (`font-family`)
+
+Menentukan jenis huruf yang digunakan.
+**Contoh:**
+
+```css
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+```
+
+📌 Browser akan menggunakan font cadangan jika font utama tidak tersedia.
+
+## 3️⃣ Mengatur Ukuran Font (`font-size`)
+
+Digunakan untuk menentukan ukuran teks.
+**Contoh:**
+
+```css
+p {
   font-size: 16px;
 }
 ```
 
-📌 Selector ini akan mempengaruhi **semua** `<p>` di halaman.
+📌 Satuan umum:
 
-## 3️⃣ Class Selector
+- `px` → ukuran tetap
+- `em`, `rem` → responsif (direkomendasikan)
 
-Digunakan untuk memilih elemen berdasarkan **atribut class**.
-**HTML:**
+## 4️⃣ Ketebalan Teks (`font-weight`)
 
-```html
-<p class="title">Biodata Saya</p>
-```
-
-**CSS**
+Mengatur tebal-tipis teks.
+**Contoh:**
 
 ```css
-.title {
-  color: blue;
+h1 {
   font-weight: bold;
 }
 ```
 
-📌 Class bisa digunakan **lebih dari satu kali**.
-
-## 4️⃣ ID Selector
-
-Digunakan untuk memilih elemen dengan **id unik**.
-**HTML:**
-
-```html
-<h1 id="header">Profil</h1>
-```
-
-**CSS:**
+Atau numerik:
 
 ```css
-#header {
-  background-color: lightgray;
-  padding: 10px;
-}
+font-weight: 400; /* normal */
+font-weight: 700; /* bold */
 ```
 
-📌 ID hanya boleh digunakan **satu kali dalam satu halaman**.
+## 5️⃣ Perataan Teks (`text-align`)
 
-## 5️⃣ Group Selector
-
-Digunakan untuk memberi style yang sama ke **beberapa selector sekaligus**.
-
+Mengatur posisi teks secara horizontal.
 **Contoh:**
 
 ```css
-h1,
-h2,
-p {
-  font-family: Arial;
+h1 {
+  text-align: center;
 }
 ```
 
-📌 Menghemat kode dan meningkatkan konsistensi desain.
+Nilai umum:
 
-## 6️⃣ Universal Selector
+- `left`
+- `center`
+- `right`
+- `justify`
 
-Digunakan untuk memilih **semua elemen HTML**.
+## 6️⃣ Dekorasi Teks (`text-decoration`)
+
+Mengatur garis pada teks.
 **Contoh:**
 
 ```css
-* {
-  margin: 0;
-  padding: 0;
+a {
+  text-decoration: none;
 }
 ```
 
-📌 Umumnya digunakan untuk **reset CSS**.
+Nilai:
 
-## 🧪 Praktik: Styling Halaman Biodata
+- `none`
+- `underline`
+- `line-through`
+- `overline`
+
+📌 Umumnya digunakan pada **link**.
+
+## 🧪 Praktik: Mempercantik Halaman Artikel
 
 **🎯 Tujuan Praktik**
-Menggunakan berbagai selector CSS untuk mempercantik halaman biodata.
+Menerapkan styling teks untuk membuat artikel lebih nyaman dibaca.
 
 ### 1️⃣ Struktur File
 
-- biodata
+- artikel
   - index.html
   - style.css
 
@@ -114,21 +130,23 @@ Menggunakan berbagai selector CSS untuk mempercantik halaman biodata.
 <html lang="id">
   <head>
     <meta charset="UTF-8" />
-    <title>Biodata</title>
+    <title>Artikel CSS</title>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <h1 id="header">Biodata Mahasiswa</h1>
+    <h1 class="judul">Belajar CSS Dasar</h1>
 
-    <p class="title">Informasi Pribadi</p>
+    <p class="penulis">Ditulis oleh Andi | 2026</p>
 
-    <ul>
-      <li>Nama: Andi</li>
-      <li>Umur: 22 Tahun</li>
-      <li>Hobi: Coding</li>
-    </ul>
+    <p>
+      CSS membantu developer mengatur tampilan website agar terlihat menarik dan
+      profesional.
+    </p>
 
-    <p>Terima kasih telah mengunjungi halaman biodata.</p>
+    <p>
+      Dengan CSS, kita dapat mengatur warna, font, dan tata letak halaman secara
+      terpisah dari HTML.
+    </p>
   </body>
 </html>
 ```
@@ -136,32 +154,27 @@ Menggunakan berbagai selector CSS untuk mempercantik halaman biodata.
 ### 3️⃣ Kode CSS (`style.css`)
 
 ```css
-/* Universal Selector */
-* {
-  font-family: Arial, sans-serif;
-}
-
-/* ID Selector */
-#header {
-  background-color: #f2f2f2;
-  padding: 15px;
-  text-align: center;
-}
-
-/* Class Selector */
-.title {
-  color: darkblue;
-  font-size: 18px;
-}
-
-/* Element Selector */
-p {
+body {
+  font-family: Arial, Helvetica, sans-serif;
   color: #333;
 }
 
-/* Group Selector */
-li,
+.judul {
+  text-align: center;
+  font-size: 32px;
+  font-weight: 700;
+}
+
+.penulis {
+  text-align: center;
+  font-size: 14px;
+  color: gray;
+  text-decoration: underline;
+}
+
 p {
-  line-height: 1.6;
+  font-size: 16px;
+  line-height: 1.8;
+  text-align: justify;
 }
 ```
