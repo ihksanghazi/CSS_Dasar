@@ -1,125 +1,116 @@
-# 📘 Modul 3: Warna, Font, dan Text Styling
+# 📘 Modul 4: Box Model CSS
 
 **🎯 Tujuan Pembelajaran**
 Setelah pertemuan ini, peserta mampu:
 
-- Mengatur warna teks menggunakan CSS
-- Mengubah jenis, ukuran, dan ketebalan font
-- Mengatur perataan dan dekorasi teks
-- Menerapkan text styling untuk halaman artikel
+- Memahami konsep **CSS Box Model**
+- Mengatur ukuran dan ruang elemen
+- Menggunakan margin, padding, dan border dengan tepat
+- Menerapkan `box-sizing: border-box`
+- Membuat layout **card sederhana**
 
-## 1️⃣ Mengatur Warna Teks (`color`)
+## 1️⃣ Apa Itu Box Model?
 
-Properti `color` digunakan untuk mengatur warna teks.
-**Contoh:**
+Setiap elemen HTML dianggap sebagai **kotak (box)** yang terdiri dari:
+
+```bash
++----------------------+
+|      margin          |
+|  +---------------+  |
+|  |   border      |  |
+|  | +-----------+ |  |
+|  | | padding   | |  |
+|  | | content   | |  |
+|  | +-----------+ |  |
+|  +---------------+  |
++----------------------+
+
+```
+
+📌 Urutan: **Content → Padding → Border → Margin**
+
+## 2️⃣ Width & Height
+
+Digunakan untuk mengatur **ukuran konten** elemen.
 
 ```css
-p {
-  color: darkslategray;
+.card {
+  width: 300px;
+  height: auto;
 }
 ```
 
-**Jenis Penulisan Warna:**
+📌 `height: auto` menyesuaikan isi.
 
-- Nama warna: `red`, `blue`
-- Hex: `#333333`
-- RGB: `rgb(0, 0, 0)`
+## 3️⃣ Padding
 
-📌 **Best practice**: Gunakan kode **hex** agar konsisten.
-
-## 2️⃣ Mengatur Jenis Font (`font-family`)
-
-Menentukan jenis huruf yang digunakan.
-**Contoh:**
+Ruang **di dalam elemen**, antara konten dan border.
 
 ```css
-body {
-  font-family: Arial, Helvetica, sans-serif;
+.card {
+  padding: 20px;
 }
 ```
 
-📌 Browser akan menggunakan font cadangan jika font utama tidak tersedia.
-
-## 3️⃣ Mengatur Ukuran Font (`font-size`)
-
-Digunakan untuk menentukan ukuran teks.
-**Contoh:**
+📌 Bisa spesifik:
 
 ```css
-p {
-  font-size: 16px;
+.card {
+  padding: 10px 20px;
 }
 ```
 
-📌 Satuan umum:
+## 4️⃣ Border
 
-- `px` → ukuran tetap
-- `em`, `rem` → responsif (direkomendasikan)
-
-## 4️⃣ Ketebalan Teks (`font-weight`)
-
-Mengatur tebal-tipis teks.
-**Contoh:**
+Garis pembatas elemen.
 
 ```css
-h1 {
-  font-weight: bold;
+.card {
+  border: 1px solid #ccc;
 }
 ```
 
-Atau numerik:
+📌 Format: `border: width style color`
+
+## 5️⃣ Margin
+
+Ruang **di luar elemen**, untuk jarak antar elemen.
 
 ```css
-font-weight: 400; /* normal */
-font-weight: 700; /* bold */
-```
-
-## 5️⃣ Perataan Teks (`text-align`)
-
-Mengatur posisi teks secara horizontal.
-**Contoh:**
-
-```css
-h1 {
-  text-align: center;
+.card {
+  margin: 20px auto;
 }
 ```
 
-Nilai umum:
+📌 `auto` membuat elemen berada di tengah (horizontal).
 
-- `left`
-- `center`
-- `right`
-- `justify`
+## 6️⃣ Box-Sizing
 
-## 6️⃣ Dekorasi Teks (`text-decoration`)
-
-Mengatur garis pada teks.
-**Contoh:**
+Mengatur cara browser menghitung ukuran elemen.
+**Default:**
 
 ```css
-a {
-  text-decoration: none;
+box-sizing: content-box;
+```
+
+**Best Practice:**
+
+```css
+* {
+  box-sizing: border-box;
 }
 ```
 
-Nilai:
+📌 Dengan `border-box`, **padding dan border tidak menambah ukuran elemen**.
 
-- `none`
-- `underline`
-- `line-through`
-- `overline`
-
-📌 Umumnya digunakan pada **link**.
-
-## 🧪 Praktik: Mempercantik Halaman Artikel
+## 🧪 Praktik: Layout Kartu (Card) Sederhana
 
 **🎯 Tujuan Praktik**
-Menerapkan styling teks untuk membuat artikel lebih nyaman dibaca.
+Membuat komponen **card** seperti pada website modern.
 
 ### 1️⃣ Struktur File
 
-- artikel
+- card-layout
   - index.html
   - style.css
 
@@ -130,23 +121,15 @@ Menerapkan styling teks untuk membuat artikel lebih nyaman dibaca.
 <html lang="id">
   <head>
     <meta charset="UTF-8" />
-    <title>Artikel CSS</title>
+    <title>Card Layout</title>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <h1 class="judul">Belajar CSS Dasar</h1>
-
-    <p class="penulis">Ditulis oleh Andi | 2026</p>
-
-    <p>
-      CSS membantu developer mengatur tampilan website agar terlihat menarik dan
-      profesional.
-    </p>
-
-    <p>
-      Dengan CSS, kita dapat mengatur warna, font, dan tata letak halaman secara
-      terpisah dari HTML.
-    </p>
+    <div class="card">
+      <h2>Judul Card</h2>
+      <p>Ini adalah contoh card sederhana menggunakan konsep box model CSS.</p>
+      <a href="#">Baca Selengkapnya</a>
+    </div>
   </body>
 </html>
 ```
@@ -154,27 +137,30 @@ Menerapkan styling teks untuk membuat artikel lebih nyaman dibaca.
 ### 3️⃣ Kode CSS (`style.css`)
 
 ```css
+* {
+  box-sizing: border-box;
+}
+
 body {
   font-family: Arial, Helvetica, sans-serif;
-  color: #333;
+  background-color: #f5f5f5;
 }
 
-.judul {
-  text-align: center;
-  font-size: 32px;
-  font-weight: 700;
+.card {
+  width: 300px;
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  padding: 20px;
+  margin: 40px auto;
+  border-radius: 8px;
 }
 
-.penulis {
-  text-align: center;
-  font-size: 14px;
-  color: gray;
-  text-decoration: underline;
+.card h2 {
+  margin-top: 0;
 }
 
-p {
-  font-size: 16px;
-  line-height: 1.8;
-  text-align: justify;
+.card a {
+  text-decoration: none;
+  color: #007bff;
 }
 ```
