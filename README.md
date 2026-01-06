@@ -1,189 +1,142 @@
-# 📘 Modul 8: Position & Z-Index
+# 📘 Modul 9: Responsive Web Design
 
 **🎯 Tujuan Pembelajaran**
 Setelah pertemuan ini, peserta mampu:
 
-- Memahami cara kerja sistem posisi di CSS
-- Menggunakan `relative`, `absolute`, `fixed`, dan `sticky` dengan benar
-- Mengontrol tumpukan elemen menggunakan `z-index`
-- Menerapkan positioning pada kasus nyata website
+- Memahami konsep Responsive Web Design (RWD)
+- Menggunakan **media query** dengan benar
+- Membuat layout yang menyesuaikan ukuran layar
+- Menerapkan **mobile-first approach**
+- Membangun layout yang nyaman di **mobile & desktop**
 
-## 1️⃣ Konsep Dasar Positioning
+## 1️⃣ Apa Itu Responsive Web Design?
 
-Secara default, semua elemen HTML memiliki:
+**Responsive Web Design** adalah teknik agar website:
+
+- Tampil rapi di **mobile**, **tablet**, **dan desktop**
+- Menyesuaikan ukuran layar secara otomatis
+- Tidak perlu membuat website terpisah
+
+📌 Ini adalah **standar wajib** di dunia kerja.
+
+## 2️⃣ Media Query
+
+Media query digunakan untuk menerapkan CSS **berdasarkan kondisi layar**.
+**Sintaks Dasar:**
 
 ```css
-position: static;
+@media (max-width: 768px) {
+  /* CSS untuk layar kecil */
+}
 ```
 
 Artinya:
 
-- Elemen mengikuti alur normal dokumen
-- Tidak bisa dipindahkan dengan `top`, `left`, `dll`
+- CSS di dalamnya aktif jika layar **≤ 768px**
+- Biasanya untuk **tablet & mobile**
 
-## 2️⃣ `position: relative`
+## 3️⃣ Breakpoint Umum
 
-Digunakan untuk:
+| Device  | Ukuran   |
+| ------- | -------- |
+| Mobile  | ≤ 576px  |
+| Tablet  | ≤ 768px  |
+| Laptop  | ≤ 1024px |
+| Desktop | > 1024px |
 
-- Menggeser elemen **tanpa keluar dari alur**
-- Menjadi **parent** bagi elemen absolute
+## 4️⃣ Responsive Layout
+
+Responsive layout berarti:
+
+- Kolom bisa berubah jumlah
+- Menu bisa berpindah posisi
+- Ukuran font & padding menyesuaikan
+
+📌 Umumnya dikombinasikan dengan:
+
+- Flexbox
+- CSS Grid
+
+## 5️⃣ Mobile-First Concept ⭐
+
+**Mobile-first** berarti:
+
+1. Desain untuk **mobile terlebih dahulu**
+2. Tambahkan fitur untuk layar lebih besar
+
+**Contoh:**
 
 ```css
-.card {
-  position: relative;
+/* Mobile (default) */
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Desktop */
+@media (min-width: 768px) {
+  .container {
+    flex-direction: row;
+  }
 }
 ```
 
-📌 Biasanya **tidak terlihat efeknya**, tapi sangat penting.
+📌 Ini adalah **best practice industri**.
 
-## 3️⃣ `position: absolute`
-
-Digunakan untuk:
-
-- Memposisikan elemen secara bebas
-- Menempel pada **parent terdekat yang** `relative`
-
-```css
-.badge {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-}
-```
-
-📌 Jika tidak ada parent `relative` → menempel ke `body` ❌
-
-## 🧪 Praktik Utama: Relative & Absolute
+## 🧪 Praktik: Layout Responsif Mobile & Desktop
 
 **🎯 Studi Kasus**
+Layout dengan:
 
-Membuat **Card Produk** dengan **Badge di pojok kanan atas**
+- Sidebar
+- Konten utama
 
 ### HTML
 
 ```html
-<div class="card">
-  <span class="badge">NEW</span>
-  <h2>Produk A</h2>
-  <p>Contoh penggunaan relative dan absolute.</p>
+<div class="layout">
+  <div class="sidebar">Sidebar</div>
+  <div class="content">Konten Utama</div>
 </div>
 ```
 
 ### CSS
 
 ```css
-.card {
-  position: relative;
-  width: 300px;
-  padding: 20px;
-  background: white;
-  border-radius: 8px;
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
 }
 
-.badge {
-  position: absolute;
-  top: 12px;
-  right: 12px;
-  background: crimson;
-  color: white;
-  padding: 4px 10px;
-  border-radius: 12px;
-  font-size: 12px;
+.layout {
+  display: flex;
+  flex-direction: column;
 }
-```
 
-## 4️⃣ `position: fixed`
-
-Digunakan untuk:
-
-- Elemen yang **selalu terlihat di layar**
-- Tidak bergerak saat scroll
-
-```css
-.navbar {
-  position: fixed;
-  top: 0;
-  width: 100%;
-}
-```
-
-📌 Cocok untuk navbar & floating button.
-
-## 5️⃣ `position: sticky`
-
-Gabungan:
-
-- `relative` (awal)
-- `fixed` (saat scroll)
-
-```css
-.header {
-  position: sticky;
-  top: 0;
-}
-```
-
-## 🧪 Praktik Tambahan: Header Sticky
-
-### HTML
-
-```html
-<header class="header">Header Sticky</header>
-
-<main class="content">
-  <p>Scroll ke bawah...</p>
-</main>
-```
-
-### CSS
-
-```css
-.header {
-  position: sticky;
-  top: 0;
-  background: #333;
+/* Sidebar & konten */
+.sidebar {
+  background: #2c3e50;
   color: white;
   padding: 16px;
 }
+
 .content {
-  height: 1500px;
+  padding: 16px;
 }
-```
 
-## 6️⃣ Z-Index (Lapisan Elemen)
+/* Desktop layout */
+@media (min-width: 768px) {
+  .layout {
+    flex-direction: row;
+    min-height: 100vh;
+  }
 
-Digunakan untuk mengatur **urutan depan-belakang** elemen.
+  .sidebar {
+    width: 250px;
+  }
 
-```css
-.popup {
-  position: fixed;
-  z-index: 10;
-}
-```
-
-📌 Syarat:
-
-- Elemen harus punya `position`
-- Nilai besar → lebih depan
-
-## 🧪 Praktik Tambahan: Popup Sederhana
-
-### HTML
-
-```html
-<div class="popup">Ini popup</div>
-```
-
-### CSS
-
-```css
-.popup {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background: white;
-  padding: 20px;
-  z-index: 10;
+  .content {
+    flex: 1;
+  }
 }
 ```
