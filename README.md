@@ -28,7 +28,7 @@ Fitur minimal:
 - Call-to-action (CTA)
 - Section informasi
 
-### 🔹 2. [Website Portfolio](https://ihksanghazi.github.io/ExampleWebsitePortfolio/)
+### 🔹 [2. Website Portfolio](https://ihksanghazi.github.io/ExampleWebsitePortfolio/)
 
 Cocok untuk:
 
@@ -42,7 +42,7 @@ Fitur minimal:
 - Daftar project (grid)
 - Kontak
 
-### 🔹 3. [Company Profile Sederhana](https://ihksanghazi.github.io/ExampleCompanyProfile/)
+### 🔹 [3. Company Profile Sederhana](https://ihksanghazi.github.io/ExampleCompanyProfile/)
 
 Cocok untuk:
 
