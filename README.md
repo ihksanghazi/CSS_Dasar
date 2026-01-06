@@ -1,205 +1,189 @@
-# 📘 Pertemuan 7: CSS Grid
+# 📘 Modul 8: Position & Z-Index
 
 **🎯 Tujuan Pembelajaran**
 Setelah pertemuan ini, peserta mampu:
 
-- Memahami konsep **CSS Grid Layout**
-- Membuat layout kompleks dan responsif
-- Mengatur baris dan kolom dengan Grid
-- Menerapkan Grid untuk **galeri** dan **dashboard**
+- Memahami cara kerja sistem posisi di CSS
+- Menggunakan `relative`, `absolute`, `fixed`, dan `sticky` dengan benar
+- Mengontrol tumpukan elemen menggunakan `z-index`
+- Menerapkan positioning pada kasus nyata website
 
-## 1️⃣ Apa Itu CSS Grid?
+## 1️⃣ Konsep Dasar Positioning
 
-CSS Grid adalah sistem layout CSS untuk:
-
-- Membuat layout **dua dimensi** (baris & kolom)
-- Mengatur elemen dengan presisi tinggi
-- Membangun layout kompleks seperti dashboard
-
-📌 **Flexbox = 1 dimensi**, **Grid = 2 dimensi**
-
-## 2️⃣ Mengaktifkan Grid (`display: grid`)
-
-Untuk menggunakan CSS Grid:
+Secara default, semua elemen HTML memiliki:
 
 ```css
-.container {
-  display: grid;
+position: static;
+```
+
+Artinya:
+
+- Elemen mengikuti alur normal dokumen
+- Tidak bisa dipindahkan dengan `top`, `left`, `dll`
+
+## 2️⃣ `position: relative`
+
+Digunakan untuk:
+
+- Menggeser elemen **tanpa keluar dari alur**
+- Menjadi **parent** bagi elemen absolute
+
+```css
+.card {
+  position: relative;
 }
 ```
 
-📌 Semua elemen di dalamnya otomatis menjadi `grid item`.
+📌 Biasanya **tidak terlihat efeknya**, tapi sangat penting.
 
-## 3️⃣ Mengatur Kolom (`grid-template-columns`)
+## 3️⃣ `position: absolute`
 
-Menentukan jumlah dan ukuran kolom.
+Digunakan untuk:
 
-```css
-grid-template-columns: 200px 1fr;
-```
-
-Artinya:
-
-- Kolom kiri: tetap 200px
-- Kolom kanan: sisa layar
-
-Contoh lain:
+- Memposisikan elemen secara bebas
+- Menempel pada **parent terdekat yang** `relative`
 
 ```css
-grid-template-columns: repeat(3, 1fr);
+.badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
 ```
 
-## 4️⃣ Mengatur Baris (`grid-template-rows`)
+📌 Jika tidak ada parent `relative` → menempel ke `body` ❌
 
-Menentukan tinggi baris.
+## 🧪 Praktik Utama: Relative & Absolute
 
-```css
-grid-template-rows: 60px 1fr 50px;
-```
+**🎯 Studi Kasus**
 
-Artinya:
-
-- Baris Atas: 60px
-- Baris Tengah: fleksibel
-- Baris Bawah: 50px
-
-## 5️⃣ Jarak Antar Grid (`gap`)
-
-Mengatur jarak antar baris & kolom.
-
-```css
-gap: 20px;
-```
-
-📌 Lebih rapi daripada margin manual.
-
-## 6️⃣ ❗ Masalah Umum CSS Grid (WAJIB PAHAM)
-
-Jika hanya menulis:
-
-```css
-display: grid;
-grid-template-columns: 200px 1fr;
-grid-template-rows: 60px 1fr 50px;
-```
-
-➡️ **Browser akan menempatkan elemen otomatis berdasarkan urutan HTML,**
-➡️ Hasil layout sering **tidak sesuai desain**.
-
-✅ SOLUSI INDUSTRI: grid-template-areas
-
-## 7️⃣ Grid Template Areas (Kunci Layout Rapi)
-
-Digunakan untuk **mengatur posisi elemen secara eksplisit**.
-
-```css
-grid-template-areas:
-  "sidebar header"
-  "sidebar content"
-  "sidebar footer";
-```
-
-📌 Ini adalah cara paling aman & readable untuk layout besar.
-
-## 🧪 Praktik 1: Layout Galeri Foto
-
-**🎯 Tujuan**
-Membuat galeri gambar responsif.
+Membuat **Card Produk** dengan **Badge di pojok kanan atas**
 
 ### HTML
 
 ```html
-<div class="gallery">
-  <div class="item">Foto 1</div>
-  <div class="item">Foto 2</div>
-  <div class="item">Foto 3</div>
-  <div class="item">Foto 4</div>
-  <div class="item">Foto 5</div>
-  <div class="item">Foto 6</div>
+<div class="card">
+  <span class="badge">NEW</span>
+  <h2>Produk A</h2>
+  <p>Contoh penggunaan relative dan absolute.</p>
 </div>
 ```
 
 ### CSS
 
 ```css
-.gallery {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
+.card {
+  position: relative;
+  width: 300px;
   padding: 20px;
+  background: white;
+  border-radius: 8px;
 }
 
-.item {
-  background-color: #ddd;
-  height: 150px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.badge {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: crimson;
+  color: white;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 12px;
 }
 ```
 
-📌 Mudah diubah ke 2 atau 4 kolom.
+## 4️⃣ `position: fixed`
 
-## 🧪 Praktik 2: Layout Dashboard Sederhana
+Digunakan untuk:
 
-**🎯 Tujuan**
-Membuat struktur dashboard dengan.
+- Elemen yang **selalu terlihat di layar**
+- Tidak bergerak saat scroll
 
-- Sidebar
-- Header
-- Konten
-- Footer
+```css
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+```
+
+📌 Cocok untuk navbar & floating button.
+
+## 5️⃣ `position: sticky`
+
+Gabungan:
+
+- `relative` (awal)
+- `fixed` (saat scroll)
+
+```css
+.header {
+  position: sticky;
+  top: 0;
+}
+```
+
+## 🧪 Praktik Tambahan: Header Sticky
 
 ### HTML
 
 ```html
-<div class="dashboard">
-  <div class="sidebar">Sidebar</div>
-  <div class="header">Header</div>
-  <div class="content">Konten</div>
-  <div class="footer">Footer</div>
-</div>
+<header class="header">Header Sticky</header>
+
+<main class="content">
+  <p>Scroll ke bawah...</p>
+</main>
 ```
 
 ### CSS
 
 ```css
-.dashboard {
-  display: grid;
-  grid-template-columns: 220px 1fr;
-  grid-template-rows: 60px 1fr 50px;
-  grid-template-areas:
-    "sidebar header"
-    "sidebar content"
-    "sidebar footer";
-  gap: 12px;
-  height: 100vh;
-}
-
-.sidebar {
-  grid-area: sidebar;
-  background: #2c3e50;
+.header {
+  position: sticky;
+  top: 0;
+  background: #333;
   color: white;
   padding: 16px;
 }
-
-.header {
-  grid-area: header;
-  background: #ecf0f1;
-  padding: 16px;
-}
-
 .content {
-  grid-area: content;
-  background: #ffffff;
-  padding: 16px;
-}
-
-.footer {
-  grid-area: footer;
-  background: #ecf0f1;
-  padding: 16px;
+  height: 1500px;
 }
 ```
 
-📌 Grid memudahkan layout kompleks tanpa nested div.
+## 6️⃣ Z-Index (Lapisan Elemen)
+
+Digunakan untuk mengatur **urutan depan-belakang** elemen.
+
+```css
+.popup {
+  position: fixed;
+  z-index: 10;
+}
+```
+
+📌 Syarat:
+
+- Elemen harus punya `position`
+- Nilai besar → lebih depan
+
+## 🧪 Praktik Tambahan: Popup Sederhana
+
+### HTML
+
+```html
+<div class="popup">Ini popup</div>
+```
+
+### CSS
+
+```css
+.popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  padding: 20px;
+  z-index: 10;
+}
+```
