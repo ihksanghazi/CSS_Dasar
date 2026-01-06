@@ -1,142 +1,155 @@
-# 📘 Modul 9: Responsive Web Design
+# 📘 Modul 10: Mini Project CSS
 
 **🎯 Tujuan Pembelajaran**
-Setelah pertemuan ini, peserta mampu:
 
-- Memahami konsep Responsive Web Design (RWD)
-- Menggunakan **media query** dengan benar
-- Membuat layout yang menyesuaikan ukuran layar
-- Menerapkan **mobile-first approach**
-- Membangun layout yang nyaman di **mobile & desktop**
+Setelah menyelesaikan mini project ini, peserta mampu:
 
-## 1️⃣ Apa Itu Responsive Web Design?
+- Menggabungkan seluruh materi CSS yang telah dipelajari
+- Membangun tampilan website modern dan responsif
+- Menggunakan **Flexbox & CSS Grid** secara tepat
+- Menyusun struktur CSS yang rapi dan mudah dikembangkan
+- (Bonus) Menambahkan animasi sederhana untuk meningkatkan UX
 
-**Responsive Web Design** adalah teknik agar website:
+## 🗂️ Pilihan Mini Project
 
-- Tampil rapi di **mobile**, **tablet**, **dan desktop**
-- Menyesuaikan ukuran layar secara otomatis
-- Tidak perlu membuat website terpisah
+Peserta memilih **satu** dari berikut:
 
-📌 Ini adalah **standar wajib** di dunia kerja.
+### 🔹 1. Landing Page
 
-## 2️⃣ Media Query
+Cocok untuk:
 
-Media query digunakan untuk menerapkan CSS **berdasarkan kondisi layar**.
-**Sintaks Dasar:**
+- Produk
+- Event
+- Startup
 
-```css
-@media (max-width: 768px) {
-  /* CSS untuk layar kecil */
-}
-```
+Fitur minimal:
 
-Artinya:
+- Hero section
+- Call-to-action (CTA)
+- Section informasi
 
-- CSS di dalamnya aktif jika layar **≤ 768px**
-- Biasanya untuk **tablet & mobile**
+### 🔹 2. Website Portfolio
 
-## 3️⃣ Breakpoint Umum
+Cocok untuk:
 
-| Device  | Ukuran   |
-| ------- | -------- |
-| Mobile  | ≤ 576px  |
-| Tablet  | ≤ 768px  |
-| Laptop  | ≤ 1024px |
-| Desktop | > 1024px |
+- Mahasiswa
+- Fresh graduate
+- Developer pemula
 
-## 4️⃣ Responsive Layout
+Fitur minimal:
 
-Responsive layout berarti:
+- Profil singkat
+- Daftar project (grid)
+- Kontak
 
-- Kolom bisa berubah jumlah
-- Menu bisa berpindah posisi
-- Ukuran font & padding menyesuaikan
+### 🔹 3. Company Profile Sederhana
 
-📌 Umumnya dikombinasikan dengan:
+Cocok untuk:
 
-- Flexbox
-- CSS Grid
+- Sekolah
+- UKM
+- Organisasi
 
-## 5️⃣ Mobile-First Concept ⭐
+Fitur minimal:
 
-**Mobile-first** berarti:
+- Tentang perusahaan
+- Layanan
+- Kontak
 
-1. Desain untuk **mobile terlebih dahulu**
-2. Tambahkan fitur untuk layar lebih besar
+## 📌 Kriteria Wajib Project
 
-**Contoh:**
+### ✅ 1. Menggunakan Flexbox & Grid
 
-```css
-/* Mobile (default) */
-.container {
-  display: flex;
-  flex-direction: column;
-}
+- Flexbox → navbar, alignment
+- Grid → galeri, section, layout utama
 
-/* Desktop */
-@media (min-width: 768px) {
-  .container {
-    flex-direction: row;
-  }
-}
-```
+### ✅ 2. Responsive
 
-📌 Ini adalah **best practice industri**.
+- Mobile-first
+- Minimal 1 media query (768px)
+- Tampilan nyaman di mobile & desktop
 
-## 🧪 Praktik: Layout Responsif Mobile & Desktop
+### ✅ 3. Struktur CSS Rapi
 
-**🎯 Studi Kasus**
-Layout dengan:
+- Selector jelas
+- CSS terpisah (style.css)
 
-- Sidebar
-- Konten utama
+## 🗃️ Struktur Folder (Disarankan)
 
-### HTML
+- mini-project-css/
+  - index.html
+  - style.css
+  - assets/
+    - images/
+
+## 🧩 Contoh Struktur HTML (Ringkas)
 
 ```html
-<div class="layout">
-  <div class="sidebar">Sidebar</div>
-  <div class="content">Konten Utama</div>
-</div>
+<header class="navbar">
+  <h1>MyWebsite</h1>
+</header>
+
+<section class="hero">
+  <h2>Welcome</h2>
+  <p>Website modern dengan CSS</p>
+</section>
+
+<section class="projects">
+  <div class="card">Project 1</div>
+  <div class="card">Project 2</div>
+  <div class="card">Project 3</div>
+</section>
 ```
 
-### CSS
+## 🎨 Contoh CSS (Gabungan Materi)
 
 ```css
-body {
-  font-family: Arial, Helvetica, sans-serif;
+/* RESET */
+* {
+  box-sizing: border-box;
   margin: 0;
+  padding: 0;
 }
 
-.layout {
+/* NAVBAR */
+.navbar {
   display: flex;
-  flex-direction: column;
-}
-
-/* Sidebar & konten */
-.sidebar {
-  background: #2c3e50;
+  justify-content: space-between;
+  padding: 16px 32px;
+  background: #222;
   color: white;
-  padding: 16px;
 }
 
-.content {
-  padding: 16px;
+/* HERO */
+.hero {
+  padding: 60px 20px;
+  text-align: center;
 }
 
-/* Desktop layout */
-@media (min-width: 768px) {
-  .layout {
-    flex-direction: row;
-    min-height: 100vh;
-  }
+/* GRID */
+.projects {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  padding: 40px;
+}
 
-  .sidebar {
-    width: 250px;
-  }
+/* CARD */
+.card {
+  background: #f4f4f4;
+  padding: 20px;
+  border-radius: 8px;
+  transition: transform 0.3s;
+}
 
-  .content {
-    flex: 1;
+.card:hover {
+  transform: translateY(-8px);
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .projects {
+    grid-template-columns: 1fr;
   }
 }
 ```
