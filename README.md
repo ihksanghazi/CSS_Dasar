@@ -14,7 +14,7 @@ Setelah menyelesaikan mini project ini, peserta mampu:
 
 Peserta memilih **satu** dari berikut:
 
-### 🔹 1. Landing Page
+### 🔹 [1. Landing Page](https://ihksanghazi.github.io/ExampleLandingPage/)
 
 Cocok untuk:
 
@@ -28,7 +28,7 @@ Fitur minimal:
 - Call-to-action (CTA)
 - Section informasi
 
-### 🔹 2. Website Portfolio
+### 🔹 2. [Website Portfolio](https://ihksanghazi.github.io/ExampleWebsitePortfolio/)
 
 Cocok untuk:
 
@@ -42,7 +42,7 @@ Fitur minimal:
 - Daftar project (grid)
 - Kontak
 
-### 🔹 3. Company Profile Sederhana
+### 🔹 3. [Company Profile Sederhana](https://ihksanghazi.github.io/ExampleCompanyProfile/)
 
 Cocok untuk:
 
